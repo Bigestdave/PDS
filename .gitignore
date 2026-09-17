@@ -1,0 +1,28 @@
+﻿# Dependencies
+node_modules/
+pds-01-section/node_modules/
+
+# Production builds
+dist/
+pds-01-section/dist/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Local logs and test captures
+*.log
+scratch/
+test_*.png
+viewport_*.png
+scroll_step_*.png
