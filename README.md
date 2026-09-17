@@ -78,8 +78,8 @@ Launch both the backend and frontend simultaneously with a single command:
 
 ```bash
 # Clone the repository
-git clone https://github.com/Bigestdave/AI-Trading-Desk.git
-cd AI-Trading-Desk
+git clone https://github.com/Bigestdave/Reopen.git
+cd Reopen
 
 # Run turnkey launcher
 python run_desk.py

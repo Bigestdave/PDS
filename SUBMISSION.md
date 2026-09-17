@@ -133,8 +133,8 @@ Judges can launch the entire ecosystem with a single command:
 ### One-Click Launch
 ```bash
 # Clone the repository
-git clone https://github.com/Bigestdave/AI-Trading-Desk.git
-cd AI-Trading-Desk
+git clone https://github.com/Bigestdave/Reopen.git
+cd Reopen
 
 # Run the turnkey launcher (boots backend + frontend + opens browser)
 python run_desk.py
