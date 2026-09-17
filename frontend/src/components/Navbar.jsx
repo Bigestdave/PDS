@@ -6,11 +6,16 @@ export function Navbar({ onRescan, onOpenAudit, onOpenCopilot, onOpenReview, aud
       <div className="max-w-[1440px] mx-auto px-6 h-16 flex items-center justify-between">
         {/* Brand & Track Badge */}
         <div className="flex items-center gap-3.5">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2.5">
             <div className="w-2.5 h-2.5 rounded-full bg-[#10B981] animate-pulse" />
-            <span className="font-mono text-[14px] font-bold tracking-[0.14em] uppercase text-white">
-              BITGET AI DESK
-            </span>
+            <div className="flex items-baseline gap-2">
+              <span className="font-mono text-[16px] font-extrabold tracking-[0.2em] uppercase text-white">
+                REOPEN
+              </span>
+              <span className="font-mono text-[12px] font-semibold tracking-[0.1em] uppercase text-[#10B981]">
+                Risk Desk
+              </span>
+            </div>
           </div>
           <span className="text-[#3A3F4C] text-sm">/</span>
           <span className="inline-flex items-center px-2 py-0.5 rounded-[4px] border border-[#232730] bg-[#14171D] text-[#8E96A5] font-mono text-[10.5px] uppercase tracking-wider font-medium">

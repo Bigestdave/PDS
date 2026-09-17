@@ -1,5 +1,5 @@
 """
-AI Trading Desk Post-Trade Review & Self-Improvement Engine
+REOPEN Risk Desk Post-Trade Review & Self-Improvement Engine
 Evaluates settled trades, compares hypothesis vs outcome, and logs episodic memory lessons
 """
 import datetime

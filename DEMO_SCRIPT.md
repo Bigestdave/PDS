@@ -1,5 +1,5 @@
-# Bitget AI Trading Desk — 2-Minute Video Demo Script
-### Bitget AI × Crypto Hackathon S2 — Track 3: AI Trading Desk
+# REOPEN Risk Desk — 2-Minute Video Demo Script
+### Bitget AI × Crypto Hackathon S2 — Track 3: REOPEN Risk Desk
 
 **Presenter**: Lead Developer / Quantitative Trader  
 **Target Duration**: 120 Seconds (2:00)  
@@ -21,9 +21,9 @@
 ### Click-by-Click Narration Script
 
 #### [0:00 – 0:25] Introduction & Philosophy
-- **Screen Action**: Screen opens on the Bitget AI Trading Desk (`http://127.0.0.1:5174/`), showing dark institutional Bloomberg-terminal styling, live Bitget ticker strip, and $100K NAV.
+- **Screen Action**: Screen opens on the REOPEN Risk Desk (`http://127.0.0.1:5174/`), showing dark institutional Bloomberg-terminal styling, live Bitget ticker strip, and $100K NAV.
 - **Voiceover**:
-  > *"Welcome to the Bitget AI Trading Desk, built for Track 3 of the Bitget AI Hackathon.  
+  > *"Welcome to the REOPEN Risk Desk, built for Track 3 of the Bitget AI Hackathon.  
   > In crypto trading, autonomous bots fail because language models hallucinate and cannot handle latency cascades. Real institutional trading desks NEVER give unconstrained execution power to an AI.  
   > Instead, we built the Human-in-the-Loop Intelligence Desk: where AI extracts microstructure signals and stress-tests decisions, while the professional trader retains 100% execution authority."*
 

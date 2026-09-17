@@ -1,5 +1,5 @@
 """
-FastAPI Router for Bitget AI Trading Desk
+FastAPI Router for REOPEN Risk Desk
 Enforces Human-in-the-Loop Authorization
 """
 from fastapi import APIRouter, HTTPException
@@ -34,7 +34,7 @@ refresh_opportunities()
 def health():
     return {
         "status": "online",
-        "service": "Bitget AI Trading Desk Core",
+        "service": "REOPEN Risk Desk Core",
         "timestamp": datetime.datetime.utcnow().isoformat(),
         "total_active_opportunities": len(SESSION_OPPORTUNITIES),
         "audit_decisions_count": len(AUDIT_LOG)

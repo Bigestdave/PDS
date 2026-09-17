@@ -1,5 +1,5 @@
 """
-AI Trading Desk Copilot & Decision Stress-Testing Engine
+REOPEN Risk Desk Copilot & Decision Stress-Testing Engine
 Processes natural-language trader inquiries against live Bitget telemetry
 """
 import datetime

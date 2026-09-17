@@ -1,4 +1,4 @@
-# Bitget AI Trading Desk (Track 3: AI Trading Desk)
+# REOPEN Risk Desk (Track 3: AI Trading Desk)
 ### Official Submission Whitepaper — Bitget AI × Crypto Hackathon S2
 **Human-in-the-Loop Institutional Microstructure Research & Decision Workstation**
 
@@ -8,13 +8,13 @@
 
 Autonomous AI trading bots represent a flawed paradigm in institutional digital asset trading. Real-world proprietary trading desks and quantitative hedge funds **never** grant unconstrained, autonomous execution authority to large language models. Hallucinations, black-swan tail events, regime shifts, and exchange latency cascades make fully automated retail bots fragile and dangerous.
 
-The **Bitget AI Trading Desk** pioneers the **Human-in-the-Loop (HITL) Intelligence Workstation** designed specifically around Bitget's Track 3 mandate. The AI acts as an elite quantitative research analyst: it ingests real-time Bitget market telemetry, extracts microstructural signals, generates structured **Trade Opportunity Cards**, visualizes deep evidence dossiers, stress-tests decisions against macro shocks, and conducts post-trade self-improvement reviews. 
+The **REOPEN Risk Desk** pioneers the **Human-in-the-Loop (HITL) Intelligence Workstation** designed specifically around Bitget's Track 3 mandate. The AI acts as an elite quantitative research analyst: it ingests real-time Bitget market telemetry, extracts microstructural signals, generates structured **Trade Opportunity Cards**, visualizes deep evidence dossiers, stress-tests decisions against macro shocks, and conducts post-trade self-improvement reviews. 
 
 Crucially, the system enforces an **Institutional Human Authorization Gate**: the AI cannot execute trades autonomously. The discretionary trader retains sovereign authority to inspect evidence, adjust capital allocations within hard risk ceilings ($5,000 / 5% NAV), and explicitly authorize or reject each order. Every decision is immutably logged to an auditable cryptographic compliance ledger.
 
 ```
 ┌──────────────────────────────────────────────────────────────────────────────────┐
-│                         BITGET AI TRADING DESK TOPOLOGY                          │
+│                         REOPEN RISK DESK TOPOLOGY                          │
 │                                                                                  │
 │   [ Bitget V2 Market Feeds ] ──► [ AI Microstructure Scanner ]                  │
 │   (L2 Depth, Basis, Funding)     • PDS-01 Equity Basis Dislocation (SPY/RSPY)    │
@@ -49,7 +49,7 @@ Crucially, the system enforces an **Institutional Human Authorization Gate**: th
 
 ## Track 3 Rubric Alignment: The 5 Core Competencies
 
-Bitget's Hackathon Track 3 evaluates systems across five specific operational dimensions. Below is how the Bitget AI Trading Desk fulfills each criterion:
+Bitget's Hackathon Track 3 evaluates systems across five specific operational dimensions. Below is how the REOPEN Risk Desk fulfills each criterion:
 
 ### 1. Information Extraction & Signal Generation
 - **Bitget V2 API Connector**: Continuously streams L2 order book depth, 8-hour funding rates, and 24-hour ticker volume metrics across Bitget perpetual futures and spot pairs.
@@ -93,7 +93,7 @@ Bitget's Hackathon Track 3 evaluates systems across five specific operational di
 
 The two projects submitted to Bitget Hackathon S2 represent a unified institutional stack:
 
-| Dimension | Track 1: PDS-01 Alpha Factory | Track 3: Bitget AI Trading Desk |
+| Dimension | Track 1: PDS-01 Alpha Factory | Track 3: REOPEN Risk Desk |
 | :--- | :--- | :--- |
 | **Submission Focus** | Quantitative Strategy & Alpha Validation | Institutional Research Workstation & Human-in-the-Loop Execution |
 | **Core Artifact** | Mathematical edge, audited trade logs, backtest engine, frozen parameters (+10.82 / +4.96 bps) | Full-stack interactive terminal (FastAPI + React 19 + Bitget V2 API) |
@@ -160,4 +160,4 @@ Visit **`http://127.0.0.1:5174/`** in your browser to interact with the live wor
 
 ## Conclusion
 
-The **Bitget AI Trading Desk** shifts the paradigm of AI in crypto trading from reckless black-box automation to institutional, human-supervised decision intelligence. By unifying real-time Bitget telemetry, rigorous quantitative research primitives (PDS-01), interactive microstructural evidence, risk stress-testing, and self-improving post-trade review, the desk delivers the exact standard of software demanded by professional proprietary trading operations.
+The **REOPEN Risk Desk** shifts the paradigm of AI in crypto trading from reckless black-box automation to institutional, human-supervised decision intelligence. By unifying real-time Bitget telemetry, rigorous quantitative research primitives (PDS-01), interactive microstructural evidence, risk stress-testing, and self-improving post-trade review, the desk delivers the exact standard of software demanded by professional proprietary trading operations.

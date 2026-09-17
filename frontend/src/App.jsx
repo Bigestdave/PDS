@@ -151,9 +151,14 @@ export default function App() {
                 INTELLIGENCE DISCOVERY FEED
               </span>
             </div>
-            <h1 className="text-[32px] sm:text-[38px] font-bold text-white tracking-tight">
-              Trade Decision Desk
-            </h1>
+            <div className="flex items-baseline gap-3 mb-1">
+              <h1 className="text-[32px] sm:text-[38px] font-extrabold text-white tracking-tight font-mono">
+                REOPEN
+              </h1>
+              <span className="text-[20px] sm:text-[24px] font-semibold text-[#10B981] tracking-wide font-mono">
+                Risk Desk
+              </span>
+            </div>
             <p className="text-[14px] text-[#8E96A5] mt-1 max-w-2xl leading-relaxed">
               Autonomous multi-source research engine identifying high-conviction dislocations on Bitget. 
               The AI produces the evidence-backed decision; the human trader retains final execution authority.

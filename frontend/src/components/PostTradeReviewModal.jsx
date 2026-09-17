@@ -27,7 +27,7 @@ export function PostTradeReviewModal({ isOpen, onClose }) {
             <div className="w-3 h-3 rounded-full bg-[#3B82F6]" />
             <div>
               <h3 className="text-[19px] font-mono font-bold text-white tracking-tight">
-                POST-TRADE REVIEW & SELF-IMPROVEMENT ENGINE
+                POST-TRADE REVIEW & REOPEN RISK ENGINE
               </h3>
               <p className="text-[12px] font-mono text-[#6B7280] mt-0.5">
                 Bitget Track 3 Rubric: Continuous trade post-mortems and episodic memory calibration

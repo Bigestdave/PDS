@@ -4,7 +4,7 @@ export function DeskCopilotDrawer({ isOpen, onClose, onSelectOpportunity }) {
   const [messages, setMessages] = useState([
     {
       role: "assistant",
-      content: "👋 Welcome to the Bitget AI Trading Desk. I am monitoring live feeds across Bitget Perps and Reality Tokens. How can I assist your trade research today?",
+      content: "👋 Welcome to the REOPEN Risk Desk. I am monitoring live feeds across Bitget Perps and Reality Tokens. How can I assist your trade research today?",
       citations: [],
       action: null,
       timestamp: "Ready"

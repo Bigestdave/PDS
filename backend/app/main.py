@@ -6,7 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.api.routes import router
 
 app = FastAPI(
-    title="Bitget AI Trading Desk API",
+    title="REOPEN Risk Desk API",
     description="Human-in-the-Loop Intelligence Desk for Bitget Hackathon S2",
     version="1.0.0"
 )

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Bitget AI Trading Desk — Turnkey Launcher
+REOPEN Risk Desk — Turnkey Launcher
 Starts both the FastAPI Backend and the React Frontend simultaneously.
 """
 
@@ -17,7 +17,7 @@ FRONTEND_DIR = os.path.join(CURRENT_DIR, "frontend")
 
 def print_banner():
     print("=" * 75)
-    print("      BITGET AI TRADING DESK — TURNKEY SYSTEM LAUNCHER")
+    print("      REOPEN RISK DESK — TURNKEY SYSTEM LAUNCHER")
     print("  Track 3: Human-in-the-Loop Microstructure Intelligence Workstation")
     print("=" * 75)
     print(" [1] Backend:  FastAPI + Bitget Connector on http://127.0.0.1:8000")
@@ -60,7 +60,7 @@ def main():
         time.sleep(3)
 
         print("\n" + "=" * 75)
-        print(" [SUCCESS] BITGET AI TRADING DESK IS LIVE!")
+        print(" [SUCCESS] REOPEN RISK DESK IS LIVE!")
         print(" -> Access Desk Workstation: http://127.0.0.1:5174/")
         print(" -> Access API Swagger Docs: http://127.0.0.1:8000/docs")
         print("=" * 75)

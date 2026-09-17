@@ -1,4 +1,4 @@
-# Bitget AI Trading Desk (Track 3: Human-in-the-Loop Intelligence Desk)
+# REOPEN Risk Desk (Track 3: Human-in-the-Loop Intelligence Desk)
 
 > **Official Submission for Bitget AI × Crypto Hackathon S2 — Track 3: AI Trading Desk**  
 > *"AI extracts market telemetry, structures deep microstructure evidence, and stress-tests decisions; the human trader retains 100% execution authority."*
@@ -14,7 +14,7 @@
 
 Most retail AI trading tools fail by attempting to turn LLMs into unconstrained, autonomous execution bots. In institutional proprietary trading desks and quantitative hedge funds, traders **never** give an autonomous model unsupervised custody over order routing. Hallucinations, black-swan liquidation cascades, and regime shifts make autonomous bots hazardous.
 
-The **Bitget AI Trading Desk** delivers an institutional **Human-in-the-Loop (HITL) Research & Decision Workstation** built strictly according to Bitget's Track 3 mandate:
+The **REOPEN Risk Desk** delivers an institutional **Human-in-the-Loop (HITL) Research & Decision Workstation** built strictly according to Bitget's Track 3 mandate:
 
 1. **Information Extraction & Signal Radar**: Real-time Bitget V2 API telemetry ingestion across synthetic equity perps (`SPYUSDT`), major crypto perps (`BTCUSDT`), and altcoin perps (`SOLUSDT`).
 2. **First Research Primitive (PDS-01)**: Natively integrates the audited **Perpetual Dislocation Snapback (PDS-01)** strategy detecting equity-perpetual basis divergence from spot reality tokens (`RSPYUSDT`).

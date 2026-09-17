@@ -1,5 +1,5 @@
 """
-AI Trading Desk Market Intelligence Scanner
+REOPEN Risk Desk Market Intelligence Scanner
 Integrates PDS-01 research primitive + Crypto Order Book/Funding Anomalies
 """
 import datetime
