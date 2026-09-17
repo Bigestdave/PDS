@@ -5,6 +5,7 @@ import { OpportunityCard } from "./components/OpportunityCard";
 import { EvidenceModal } from "./components/EvidenceModal";
 import { AuditLedgerModal } from "./components/AuditLedgerModal";
 import { DeskCopilotDrawer } from "./components/DeskCopilotDrawer";
+import { PostTradeReviewModal } from "./components/PostTradeReviewModal";
 
 const API_BASE = "http://127.0.0.1:8000/api";
 
@@ -16,6 +17,7 @@ export default function App() {
   const [reviewCard, setReviewCard] = useState(null);
   const [isAuditOpen, setIsAuditOpen] = useState(false);
   const [isCopilotOpen, setIsCopilotOpen] = useState(false);
+  const [isReviewOpen, setIsReviewOpen] = useState(false);
   const [auditLog, setAuditLog] = useState([]);
 
   // Fetch opportunities from FastAPI backend
@@ -130,6 +132,7 @@ export default function App() {
         onRescan={handleRescan}
         onOpenAudit={() => setIsAuditOpen(true)}
         onOpenCopilot={() => setIsCopilotOpen(true)}
+        onOpenReview={() => setIsReviewOpen(true)}
         auditCount={auditLog.length}
         scanning={scanning}
       />
@@ -232,6 +235,12 @@ export default function App() {
         isOpen={isCopilotOpen}
         onClose={() => setIsCopilotOpen(false)}
         onSelectOpportunity={handleSelectOpportunity}
+      />
+
+      {/* Post-Trade Review & Self-Improvement Modal */}
+      <PostTradeReviewModal
+        isOpen={isReviewOpen}
+        onClose={() => setIsReviewOpen(false)}
       />
     </div>
   );

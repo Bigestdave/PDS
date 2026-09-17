@@ -6,6 +6,7 @@ from fastapi import APIRouter, HTTPException
 import datetime
 import uuid
 from app.engine.copilot import DeskCopilot
+from app.engine.post_trade_review import PostTradeReviewEngine
 from app.engine.models import (
     DeskQueryRequest,
     DeskQueryResponse,
@@ -124,3 +125,8 @@ def trigger_scan():
 def query_copilot(payload: DeskQueryRequest):
     res = DeskCopilot.analyze(payload.query, payload.context_opp_id)
     return res
+
+
+@router.get("/post-trade-review")
+def get_post_trade_review():
+    return PostTradeReviewEngine.get_review_dossier()

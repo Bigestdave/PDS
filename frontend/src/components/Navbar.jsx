@@ -1,6 +1,6 @@
 import React from "react";
 
-export function Navbar({ onRescan, onOpenAudit, onOpenCopilot, auditCount, scanning }) {
+export function Navbar({ onRescan, onOpenAudit, onOpenCopilot, onOpenReview, auditCount, scanning }) {
   return (
     <header className="sticky top-0 z-40 bg-[#0E1013]/90 backdrop-blur-md border-b border-[#1E2229]">
       <div className="max-w-[1440px] mx-auto px-6 h-16 flex items-center justify-between">
@@ -35,12 +35,21 @@ export function Navbar({ onRescan, onOpenAudit, onOpenCopilot, auditCount, scann
         </div>
 
         {/* Right Action Controls */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5">
+          <button
+            onClick={onOpenReview}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-[6px] border border-[#222E26] bg-[#121A15] hover:bg-[#18241D] text-[#86EFAC] text-[12px] font-mono transition-colors cursor-pointer"
+            title="Post-trade review and self-improvement heuristics"
+          >
+            <span>📈</span>
+            <span className="font-semibold">Review & Learning</span>
+          </button>
+
           <button
             onClick={onOpenCopilot}
-            className="flex items-center gap-2 px-3.5 py-1.5 rounded-[6px] border border-[#2A3444] bg-[#151C28] hover:bg-[#1E2738] text-[#93C5FD] text-[12px] font-mono transition-all cursor-pointer shadow-sm"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-[6px] border border-[#2A3444] bg-[#151C28] hover:bg-[#1E2738] text-[#93C5FD] text-[12px] font-mono transition-all cursor-pointer shadow-sm"
           >
-            <span className="text-sm">💬</span>
+            <span>💬</span>
             <span className="font-semibold">Desk Analyst</span>
           </button>
 
@@ -48,7 +57,7 @@ export function Navbar({ onRescan, onOpenAudit, onOpenCopilot, auditCount, scann
             onClick={onOpenAudit}
             className="flex items-center gap-2 px-3 py-1.5 rounded-[6px] border border-[#232730] bg-[#14171D] hover:bg-[#1C2028] text-[#D1D5DB] text-[12px] font-mono transition-colors cursor-pointer"
           >
-            <span>Decision Audit</span>
+            <span>Audit</span>
             <span className="px-1.5 py-0.2 rounded-full bg-[#2A303C] text-[10px] text-[#A1A7B5] font-bold">
               {auditCount}
             </span>
@@ -57,10 +66,10 @@ export function Navbar({ onRescan, onOpenAudit, onOpenCopilot, auditCount, scann
           <button
             onClick={onRescan}
             disabled={scanning}
-            className="flex items-center gap-2 px-4 py-1.5 rounded-[6px] bg-[#10B981] hover:bg-[#0EA271] text-[#0B0C0E] text-[12.5px] font-semibold font-mono tracking-tight transition-all cursor-pointer disabled:opacity-50"
+            className="flex items-center gap-2 px-3.5 py-1.5 rounded-[6px] bg-[#10B981] hover:bg-[#0EA271] text-[#0B0C0E] text-[12px] font-semibold font-mono tracking-tight transition-all cursor-pointer disabled:opacity-50"
           >
             <span className={scanning ? "animate-spin" : ""}>⚡</span>
-            <span>{scanning ? "SCANNING..." : "RESCAN MARKETS"}</span>
+            <span>{scanning ? "SCANNING..." : "RESCAN"}</span>
           </button>
         </div>
       </div>
