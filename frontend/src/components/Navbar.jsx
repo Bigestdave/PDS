@@ -1,6 +1,6 @@
 import React from "react";
 
-export function Navbar({ onRescan, onOpenAudit, auditCount, scanning }) {
+export function Navbar({ onRescan, onOpenAudit, onOpenCopilot, auditCount, scanning }) {
   return (
     <header className="sticky top-0 z-40 bg-[#0E1013]/90 backdrop-blur-md border-b border-[#1E2229]">
       <div className="max-w-[1440px] mx-auto px-6 h-16 flex items-center justify-between">
@@ -36,6 +36,14 @@ export function Navbar({ onRescan, onOpenAudit, auditCount, scanning }) {
 
         {/* Right Action Controls */}
         <div className="flex items-center gap-3">
+          <button
+            onClick={onOpenCopilot}
+            className="flex items-center gap-2 px-3.5 py-1.5 rounded-[6px] border border-[#2A3444] bg-[#151C28] hover:bg-[#1E2738] text-[#93C5FD] text-[12px] font-mono transition-all cursor-pointer shadow-sm"
+          >
+            <span className="text-sm">💬</span>
+            <span className="font-semibold">Desk Analyst</span>
+          </button>
+
           <button
             onClick={onOpenAudit}
             className="flex items-center gap-2 px-3 py-1.5 rounded-[6px] border border-[#232730] bg-[#14171D] hover:bg-[#1C2028] text-[#D1D5DB] text-[12px] font-mono transition-colors cursor-pointer"

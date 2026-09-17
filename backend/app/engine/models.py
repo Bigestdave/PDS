@@ -46,3 +46,14 @@ class ExecutionReceipt(BaseModel):
     risk_verdict: str
     authorized_at: str
     order_id: str
+
+
+class DeskQueryRequest(BaseModel):
+    query: str
+    context_opp_id: Optional[str] = None
+
+class DeskQueryResponse(BaseModel):
+    answer: str
+    suggested_action: Optional[Dict[str, Any]] = None
+    citations: List[str] = Field(default_factory=list)
+    timestamp: str

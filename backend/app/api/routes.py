@@ -5,7 +5,10 @@ Enforces Human-in-the-Loop Authorization
 from fastapi import APIRouter, HTTPException
 import datetime
 import uuid
+from app.engine.copilot import DeskCopilot
 from app.engine.models import (
+    DeskQueryRequest,
+    DeskQueryResponse,
     TradeOpportunityCard,
     DecisionActionRequest,
     ExecutionReceipt
@@ -115,3 +118,9 @@ def trigger_scan():
         "scanned_count": len(SESSION_OPPORTUNITIES),
         "timestamp": datetime.datetime.utcnow().isoformat()
     }
+
+
+@router.post("/copilot/query", response_model=DeskQueryResponse)
+def query_copilot(payload: DeskQueryRequest):
+    res = DeskCopilot.analyze(payload.query, payload.context_opp_id)
+    return res

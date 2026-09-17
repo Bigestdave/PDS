@@ -5,16 +5,22 @@ export function EvidenceModal({ card, onClose, onAuthorize, onReject }) {
     parseFloat(card.suggested_size_usd.replace(/[^0-9.]/g, "")) || 4500
   );
   const [notes, setNotes] = useState("");
-  const [activeTab, setActiveTab] = useState("all");
+  const [spotDriftPct, setSpotDriftPct] = useState(0.0);
 
   if (!card) return null;
 
   const isShort = card.direction === "SHORT";
+  const isPDS = card.strategy_type === "PDS_DISLOCATION";
   const evidence = card.evidence;
+
+  // Scenario calculations based on spot drift slider
+  const simulatedPnl = isShort
+    ? (-spotDriftPct * adjustedSize * 0.01 + 0.00075 * adjustedSize).toFixed(2)
+    : (spotDriftPct * adjustedSize * 0.01).toFixed(2);
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-md overflow-y-auto">
-      <div className="relative w-full max-w-[960px] bg-[#12151B] border border-[#232832] rounded-[16px] shadow-[0_24px_80px_rgba(0,0,0,0.8)] overflow-hidden my-8">
+      <div className="relative w-full max-w-[980px] bg-[#12151B] border border-[#232832] rounded-[16px] shadow-[0_24px_80px_rgba(0,0,0,0.8)] overflow-hidden my-8">
         {/* Modal Header */}
         <div className="p-6 bg-[#0E1014] border-b border-[#1E2229] flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -84,46 +90,108 @@ export function EvidenceModal({ card, onClose, onAuthorize, onReject }) {
             </div>
           </div>
 
-          {/* 2. Visual Evidence & Time-Series History */}
+          {/* 2. Visual Evidence & Interactive SVG Chart */}
           <div>
             <h4 className="text-[11px] font-mono uppercase tracking-wider text-[#6B7280] font-bold mb-3">
               STEP 02: TELEMETRY & HISTORICAL CONTEXT
             </h4>
-            <div className="p-5 rounded-[10px] bg-[#0E1014] border border-[#1A1E26]">
-              <div className="text-[12px] font-mono text-[#8E96A5] mb-4 flex items-center justify-between">
-                <span>RECENT SPREAD / DISLOCATION TRAJECTORY</span>
+            <div className="p-5 rounded-[10px] bg-[#0E1014] border border-[#1A1E26] space-y-4">
+              <div className="flex items-center justify-between text-[12px] font-mono text-[#8E96A5]">
+                <span className="font-semibold text-white">
+                  {isPDS ? "HISTORICAL BASIS DISLOCATION SPREAD (BPS)" : "ORDER BOOK / FUNDING TRAJECTORY"}
+                </span>
                 <span className="text-[11px] text-[#10B981]">Bitget Synchronized Clock</span>
               </div>
-              <div className="space-y-2 font-mono text-[12px]">
-                {evidence.chart_series.map((pt, idx) => (
-                  <div key={idx} className="flex items-center justify-between p-2 rounded bg-[#13161C] border border-[#1E232D]">
-                    <span className="text-[#6B7280] font-medium">{pt.time}</span>
-                    {pt.basis !== undefined && (
-                      <span className="text-[#F43F5E] font-semibold">Basis Dislocation: +{pt.basis} bps</span>
-                    )}
-                    {pt.bid_skew !== undefined && (
-                      <span className="text-[#10B981] font-semibold">Bid Imbalance: {pt.bid_skew}x</span>
-                    )}
-                    {pt.funding !== undefined && (
-                      <span className="text-[#3B82F6] font-semibold">Funding Rate: {pt.funding}%</span>
-                    )}
-                    <span className="text-white">Price: ${pt.price || pt.perp}</span>
-                  </div>
-                ))}
-              </div>
+
+              {/* Visual SVG Chart for PDS Dislocation */}
+              {isPDS ? (
+                <div className="w-full bg-[#13161C] p-4 rounded-[8px] border border-[#1E232D]">
+                  <svg viewBox="0 0 700 160" className="w-full h-auto select-none overflow-visible">
+                    {/* Horizontal Threshold Guideline: +10.82 bps Trigger */}
+                    <line x1="50" y1="50" x2="680" y2="50" stroke="#10B981" strokeWidth="1" strokeDasharray="3 3" opacity="0.8" />
+                    <text x="55" y="44" fill="#10B981" fontSize="9.5" fontFamily="monospace">
+                      TRIGGER THRESHOLD (+10.82 bps)
+                    </text>
+
+                    {/* Horizontal Target Guideline: +4.96 bps Equilibrium */}
+                    <line x1="50" y1="100" x2="680" y2="100" stroke="#7F8F63" strokeWidth="1" strokeDasharray="3 3" opacity="0.8" />
+                    <text x="55" y="94" fill="#A3B880" fontSize="9.5" fontFamily="monospace">
+                      TARGET EQUILIBRIUM (+4.96 bps)
+                    </text>
+
+                    {/* Trajectory Path */}
+                    <path
+                      d="M 80 120 Q 220 110 360 70 T 520 40 T 650 35"
+                      fill="none"
+                      stroke="#F43F5E"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                    />
+
+                    {/* Entry Dot */}
+                    <circle cx="650" cy="35" r="5" fill="#F43F5E" />
+                    <circle cx="650" cy="35" r="8" fill="#F43F5E" fillOpacity="0.3" className="animate-ping" />
+                    <text x="650" y="22" fill="#F43F5E" fontSize="10" fontFamily="monospace" fontWeight="bold" textAnchor="middle">
+                      NOW (+12.5 bps)
+                    </text>
+                  </svg>
+                </div>
+              ) : (
+                <div className="space-y-2 font-mono text-[12px]">
+                  {evidence.chart_series.map((pt, idx) => (
+                    <div key={idx} className="flex items-center justify-between p-2.5 rounded bg-[#13161C] border border-[#1E232D]">
+                      <span className="text-[#6B7280] font-medium">{pt.time}</span>
+                      {pt.bid_skew !== undefined && (
+                        <span className="text-[#10B981] font-semibold">Bid Imbalance: {pt.bid_skew}x</span>
+                      )}
+                      {pt.funding !== undefined && (
+                        <span className="text-[#3B82F6] font-semibold">Funding: {pt.funding}%</span>
+                      )}
+                      <span className="text-white">Price: ${pt.price}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
 
-          {/* 3. Risk Assessment & Invalidation Checklist */}
+          {/* 3. Decision Stress-Testing & Failure Mode Simulator */}
           <div>
             <h4 className="text-[11px] font-mono uppercase tracking-wider text-[#6B7280] font-bold mb-3">
-              STEP 03: DOWNSIDE RISK & STRESS TEST
+              STEP 03: DECISION STRESS-TESTING & FAILURE MODE ANALYSIS
             </h4>
-            <div className="p-4 rounded-[10px] bg-[#161313] border border-[#3A1B1F] space-y-3 mb-4">
-              <div className="flex items-center gap-2 text-[#F87171] font-mono text-[11px] font-bold">
-                <span>⚠ PRE-TRADE FAILURE MODE ANALYSIS</span>
+            
+            <div className="p-5 rounded-[10px] bg-[#161313] border border-[#3A1B1F] space-y-4 mb-4">
+              <div className="flex items-center justify-between text-[#F87171] font-mono text-[11px] font-bold">
+                <span>⚠ WHAT-IF SCENARIO STRESS-TESTER</span>
+                <span>Real-time Risk Simulator</span>
               </div>
-              <p className="text-[13px] text-[#E5A7A7] leading-relaxed">
+
+              {/* Slider simulation */}
+              <div className="space-y-2">
+                <div className="flex items-center justify-between text-[12px] font-mono">
+                  <span className="text-[#E5A7A7]">Simulated Underlying Price Drift:</span>
+                  <span className="text-white font-bold">{spotDriftPct > 0 ? `+${spotDriftPct}%` : `${spotDriftPct}%`}</span>
+                </div>
+                <input
+                  type="range"
+                  min="-2.0"
+                  max="2.0"
+                  step="0.1"
+                  value={spotDriftPct}
+                  onChange={(e) => setSpotDriftPct(parseFloat(e.target.value))}
+                  className="w-full accent-[#10B981] cursor-pointer"
+                />
+              </div>
+
+              <div className="p-3 rounded-[6px] bg-[#0E1014] border border-[#29171A] flex items-center justify-between font-mono text-[12px]">
+                <span className="text-[#8E96A5]">Estimated Trade PnL under Shock:</span>
+                <span className={`font-bold text-[13px] ${parseFloat(simulatedPnl) >= 0 ? "text-[#10B981]" : "text-[#F43F5E]"}`}>
+                  {parseFloat(simulatedPnl) >= 0 ? `+$${simulatedPnl}` : `-$${Math.abs(parseFloat(simulatedPnl))}`}
+                </span>
+              </div>
+
+              <p className="text-[12.5px] text-[#E5A7A7] leading-relaxed">
                 {evidence.risk_assessment}
               </p>
             </div>

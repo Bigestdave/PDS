@@ -4,6 +4,7 @@ import { MarketTickerStrip } from "./components/MarketTickerStrip";
 import { OpportunityCard } from "./components/OpportunityCard";
 import { EvidenceModal } from "./components/EvidenceModal";
 import { AuditLedgerModal } from "./components/AuditLedgerModal";
+import { DeskCopilotDrawer } from "./components/DeskCopilotDrawer";
 
 const API_BASE = "http://127.0.0.1:8000/api";
 
@@ -14,6 +15,7 @@ export default function App() {
   const [selectedCategory, setSelectedCategory] = useState("ALL");
   const [reviewCard, setReviewCard] = useState(null);
   const [isAuditOpen, setIsAuditOpen] = useState(false);
+  const [isCopilotOpen, setIsCopilotOpen] = useState(false);
   const [auditLog, setAuditLog] = useState([]);
 
   // Fetch opportunities from FastAPI backend
@@ -107,6 +109,13 @@ export default function App() {
     }
   };
 
+  const handleSelectOpportunity = (oppId) => {
+    const found = opportunities.find((o) => o.id === oppId);
+    if (found) {
+      setReviewCard(found);
+    }
+  };
+
   const filteredOpps = opportunities.filter((o) => {
     if (selectedCategory === "ALL") return true;
     if (selectedCategory === "PDS") return o.strategy_type === "PDS_DISLOCATION";
@@ -120,6 +129,7 @@ export default function App() {
       <Navbar
         onRescan={handleRescan}
         onOpenAudit={() => setIsAuditOpen(true)}
+        onOpenCopilot={() => setIsCopilotOpen(true)}
         auditCount={auditLog.length}
         scanning={scanning}
       />
@@ -215,6 +225,13 @@ export default function App() {
         isOpen={isAuditOpen}
         onClose={() => setIsAuditOpen(false)}
         auditLog={auditLog}
+      />
+
+      {/* Desk Analyst Copilot Slide-Over Drawer */}
+      <DeskCopilotDrawer
+        isOpen={isCopilotOpen}
+        onClose={() => setIsCopilotOpen(false)}
+        onSelectOpportunity={handleSelectOpportunity}
       />
     </div>
   );
