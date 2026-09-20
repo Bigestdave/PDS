@@ -103,3 +103,47 @@ class PerformanceAnalytics:
 
         p_value = (np.array(shuffled_means) >= obs_rev).mean()
         return p_value
+
+    @staticmethod
+    def simulate_capital(df_trades, initial_capital=100000.0, days=20.0):
+        """
+        Simulates portfolio performance in USD terms for an initial capital base
+        under different leverage/risk tiers.
+        """
+        if df_trades.empty:
+            return pd.DataFrame()
+
+        tiers = [
+            ("Conservative (1x)", 1.0),
+            ("Moderate (2x)", 2.0),
+            ("Active Alpha (5x)", 5.0),
+            ("High Conviction (10x)", 10.0)
+        ]
+
+        annual_factor = 365.25 / max(days, 1.0)
+        rows = []
+        for name, lev in tiers:
+            notional = initial_capital * lev
+            # PnL in USD = (net_bps / 10000) * notional
+            pnl_series = (df_trades['net_maker_bps'] / 10000.0) * notional
+            total_pnl = pnl_series.sum()
+            cum_pnl = pnl_series.cumsum()
+            running_max = np.maximum.accumulate(cum_pnl)
+            drawdowns = cum_pnl - running_max
+            max_dd_dollars = abs(drawdowns.min()) if len(drawdowns) > 0 else 0.0
+            max_dd_pct = (max_dd_dollars / initial_capital) * 100.0
+            return_pct = (total_pnl / initial_capital) * 100.0
+            ann_return = return_pct * annual_factor
+
+            rows.append({
+                'Risk Profile': name,
+                'Capital Base': f"${initial_capital:,.0f}",
+                'Pos. Notional': f"${notional:,.0f}",
+                'Net Profit ($)': f"${total_pnl:+,.2f}",
+                'Period ROI': f"{return_pct:+.2f}%",
+                'Projected Ann. ROI': f"{ann_return:+.1f}%",
+                'Max Drawdown ($)': f"${max_dd_dollars:,.2f} ({max_dd_pct:.2f}%)"
+            })
+
+        return pd.DataFrame(rows)
+

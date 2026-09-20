@@ -62,15 +62,21 @@ def run_single_asset(asset='SPY'):
     print(report_df.to_string(index=False))
     print("-" * 80)
 
+    print(f"\n[4] Portfolio Capital & Risk Simulation ($100,000 Base Equity):")
+    print("-" * 80)
+    cap_df = PerformanceAnalytics.simulate_capital(df_trades, initial_capital=100000.0)
+    print(cap_df.to_string(index=False))
+    print("-" * 80)
+
     # Export trade audit log
     out_csv = os.path.join(os.path.dirname(os.path.abspath(__file__)), f"trades_audit_{asset}.csv")
     df_trades.to_csv(out_csv, index=False)
-    print(f"\n[4] Complete Trade Audit Log Exported to:")
+    print(f"\n[5] Complete Trade Audit Log Exported to:")
     print(f"    {out_csv}")
 
     # Monte Carlo Shuffle Test
     p_val = PerformanceAnalytics.run_monte_carlo_shuffle(df, df_trades, num_perms=1000)
-    print(f"\n[5] Monte Carlo Permutation Test (1,000 Shuffled Iterations):")
+    print(f"\n[6] Monte Carlo Permutation Test (1,000 Shuffled Iterations):")
     print(f"    Empirical p-value vs. Null: p = {p_val:.4f}")
     if p_val < 0.05:
         print("    >>> STATISTICALLY SIGNIFICANT AT 95% CONFIDENCE (p < 0.05)")
