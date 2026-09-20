@@ -9,6 +9,7 @@ import { ExecutionCard } from "./components/ExecutionCard";
 import { DislocationChart } from "./components/DislocationChart";
 import { MechanismSection } from "./components/MechanismSection";
 import { TradeAnatomySection } from "./components/TradeAnatomySection";
+import { PortfolioSection } from "./components/PortfolioSection";
 import { BottomBanner } from "./components/BottomBanner";
 import { useInView } from "./hooks/useInView";
 
@@ -101,7 +102,10 @@ export default function App() {
           <TradeAnatomySection anatomy={anatomy} />
         </div>
 
-        {/* Section 5: Bottom CTA Banner */}
+        {/* Section 5: Portfolio Capital & Risk Simulation */}
+        <PortfolioSection />
+
+        {/* Section 6: Bottom CTA Banner */}
         <BottomBanner />
       </main>
     </div>

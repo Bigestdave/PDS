@@ -4,7 +4,8 @@ export const STRATEGY_DATA = {
     links: [
       { label: "Strategy", href: "#strategy", id: "strategy" },
       { label: "Mechanism", href: "#mechanism", id: "mechanism" },
-      { label: "Anatomy", href: "#anatomy", id: "anatomy" }
+      { label: "Anatomy", href: "#anatomy", id: "anatomy" },
+      { label: "Portfolio", href: "#portfolio", id: "portfolio" }
     ]
   },
   hero: {

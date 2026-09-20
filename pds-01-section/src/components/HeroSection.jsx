@@ -108,7 +108,7 @@ export function HeroSection({ hero }) {
             </a>
 
             <a
-              href="https://github.com"
+              href="https://github.com/Bigestdave/PDS"
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-2 px-5 py-3 rounded-full border border-[#E5E5DE] bg-[#FDFDFB] text-[#111111] text-[13.5px] font-medium hover:bg-[#F2F2EE] transition-colors"
